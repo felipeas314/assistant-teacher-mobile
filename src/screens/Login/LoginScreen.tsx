@@ -6,6 +6,7 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { CustomLinkText } from "../../components/LinkText";
 import { Container, LogoContainer, FormContainer } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 interface LoginFormData {
   username: string;
@@ -13,6 +14,8 @@ interface LoginFormData {
 }
 
 export default function LoginScreen() {
+  const navigation = useNavigation();
+
   const { control, handleSubmit } = useForm<LoginFormData>();
   const loginMutation = useLogin();
 
@@ -50,7 +53,7 @@ export default function LoginScreen() {
 
         <Button title="Login" onPress={handleSubmit(onSubmit)} />
 
-        <CustomLinkText title="Criar uma conta" onPress={() => {}} />
+        <CustomLinkText title="Criar uma conta" onPress={() => navigation.navigate("Register")} />
         <CustomLinkText title="Esqueci minha senha" onPress={() => {}} />
       </FormContainer>
     </Container>

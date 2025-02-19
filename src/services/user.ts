@@ -13,7 +13,7 @@ const registerUser = async (data: RegisterData) => {
   return response.data;
 };
 
-export const useLogin = () =>
+export const useRegister = () =>
     useMutation({
       mutationFn: registerUser, // Função responsável pelo login
       onSuccess: (data) => {
