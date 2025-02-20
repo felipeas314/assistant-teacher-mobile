@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Image, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { useLogin } from "../../services/login";
@@ -6,7 +6,7 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { CustomLinkText } from "../../components/LinkText";
 import { Container, LogoContainer, FormContainer } from "./styles";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, NavigationContainerRefContext } from "@react-navigation/native";
 
 interface LoginFormData {
   username: string;
@@ -14,20 +14,13 @@ interface LoginFormData {
 }
 
 export default function LoginScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   const { control, handleSubmit } = useForm<LoginFormData>();
   const loginMutation = useLogin();
 
   const onSubmit = (data: LoginFormData) => {
-    loginMutation.mutate(data, {
-      onSuccess: (response) => {
-        Alert.alert("Login realizado!", `Token: ${response.token}`);
-      },
-      onError: () => {
-        Alert.alert("Erro", "Usuário ou senha incorretos.");
-      },
-    });
+    navigation?.replace('Home')
   };
 
   return (

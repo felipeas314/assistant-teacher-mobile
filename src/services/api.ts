@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://api.teacherassistant.com.br/v1",
+  baseURL: "http://192.168.1.44:8000",
   headers: {
     "Content-Type": "application/json",
   },
